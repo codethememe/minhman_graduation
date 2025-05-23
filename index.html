@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buổi Lễ Tốt Nghiệp - Đại học Tôn Đức Thắng</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Thêm AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Lightbox2 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: #333;
+      }
+      .header {
+        background-image: url("https://via.placeholder.com/1200x400?text=TDTU+Background");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        text-align: center;
+        padding: 100px 20px;
+        color: white;
+      }
+      .header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/bg-tdtu.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+      }
+      .header-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 3em;
+        color: #ffcc00;
+        font-family: "Dancing Script", cursive;
+        text-shadow: 2px 2px 0 #000, 4px 4px 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+      .header p {
+        font-size: 1.5em;
+        color: white;
+        font-family: "Dancing Script", cursive;
+        font-weight: 500;
+        text-shadow: 1px 1px 0 #000, 2px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      .header .icon {
+        font-size: 3em;
+        margin: 20px 0;
+        text-align: center;
+      }
+      .header .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #1e90ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+      .header .btn:hover {
+        background-color: #4682b4;
+      }
+      .content {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      .content h2 {
+        color: #2c3e50;
+        font-size: 1.8em;
+      }
+      .content ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+      .map {
+        width: 100%;
+        height: 400px;
+        margin: 40px 0;
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f4f4f4;
+        color: #777;
+      }
+      footer a {
+        color: #2c3e50;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: bold;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .img-magnifier-glass {
+        position: absolute;
+        border: 3px solid #000;
+        border-radius: 50%;
+        cursor: none;
+        width: 150px;
+        height: 150px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        background-repeat: no-repeat;
+        background-size: 1200px 800px;
+        z-index: 10;
+      }
+      .invitation-text {
+        background: #fff8f0;
+        border-left: 5px solid #ff8c00;
+        padding: 30px;
+        margin-top: 40px;
+        font-size: 1.1em;
+        font-style: italic;
+        line-height: 1.8;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+      .invitation-text:hover {
+        background: #eee0ca;
+      }
+      .invitation-text p {
+        margin-bottom: 20px;
+        text-align: justify;
+        color: #4a4a4a;
+      }
+      .invitation-text p:last-child {
+        font-family: "Great Vibes", cursive;
+        font-size: 1.3em;
+        text-align: right;
+        color: #444;
+        margin-top: 30px;
+      }
+      .invitation-text .signature {
+        font-family: "Great Vibes", cursive;
+        font-size: 1.5em;
+        color: #333;
+        text-align: left !important;
+        margin-top: 0;
+        margin-left: 10px;
+      }
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        text-align: center;
+        width: 90%;
+        max-width: 800px; /* tăng từ mặc định nhỏ lên */
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .popup.active {
+        display: block;
+      }
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+      .overlay.active {
+        display: block;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .close-btn {
+        background-color: #dc3545;
+        margin-top: 10px;
+      }
+      .close-btn:hover {
+        background-color: #c82333;
+      }
+      .popup img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header" data-aos="fade-up">
+      <div class="header-content">
+        <h1>THƯ MỜI "CHUYẾN BAY TỐT NGHIỆP"</h1>
+        <div class="icon">
+          <img src="/pngtree-graduation-bachelor-hat-illustration-png-image_6580811.png" alt="" />
+        </div>
+        <p>Thân mời Những người bạn yêu quý của Minh Mẫn 💛</p>
+        <p>
+          Sau bao nhiêu lần delay, hoãn chuyến vì deadline và bài vở ngập đầu,
+          cuối cùng thì chiếc máy bay mang tên “Tốt nghiệp” của mình cũng đã sẵn
+          sàng cất cánh.
+        </p>
+        <p>
+          Hành trình 4 năm qua có lẽ sẽ chẳng thể nào trọn vẹn nếu thiếu đi các
+          bạn – những người đã đồng hành, động viên, và mang đến cho mình biết bao
+          tiếng cười và kỷ niệm quý giá. Vì thế, mình thật lòng mong các bạn sẽ có
+          mặt trong khoảnh khắc đặc biệt này – không chỉ để ăn mừng, mà là để chia
+          sẻ một cột mốc quan trọng trong cuộc đời mình.
+        </p>
+        <p>
+          Chúng ta sẽ cùng nhau chụp vài tấm hình thật đẹp, ôn lại những tháng năm
+          “điên rồ” của tuổi trẻ, và cùng nhau khép lại một hành trình – để rồi mở
+          ra những chân trời mới, nơi mỗi người sẽ bay trên bầu trời riêng của
+          mình… nhưng luôn dõi theo nhau từ xa 🌤️
+        </p>
+      </div>
+    </div>
+
+    <div class="content" id="content" data-aos="fade-up" data-aos-delay="200">
+      <h2>Thông Tin Buổi Lễ</h2>
+      <ul>
+        <li><strong>📍Thời gian cất cánh:</strong> 9:00, ngày 31 tháng 5 năm 2025</li>
+        <li>
+          <strong>🏫 Địa điểm check-in:</strong> Trường Đại học Tôn Đức Thắng,
+          19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh
+        </li>
+        <li><strong>👗 Trang phục:</strong> Thanh lịch – Tự tin – Tỏa sáng</li>
+        <li>
+          <strong>📞 Liên hệ: </strong>
+          <a href="https://www.facebook.com/dhmman02/" target="_blank">Facebook</a>
+          |
+          <a href="tel:+848835469493">0835469493</a>
+        </li>
+      </ul>
+      <div class="invitation-text" data-aos="fade-left" data-aos-delay="300">
+        <p>"Vé mời này không in tên, nhưng in đậm tình cảm của mình dành cho từng người.</p>
+        <p>
+          Mình rất mong nhận được cái gật đầu, hay chỉ một tin nhắn “Có mặt nha!” – để biết rằng bạn sẽ cùng mình khép lại một chặng đường và mở ra hành trình mới 💫
+        </p>
+        <p>Cảm ơn vì đã là một phần không thể thiếu trong hành trình trưởng thành này.</p>
+        <p>Hẹn gặp bạn trên chuyến bay <b>Tốt nghiệp</b> của mình."</p>
+        <p>Thương mến,</p>
+        <p class="signature">Minh Mẫn</p>
+        <div>
+          <button onclick="showPopup()">Vé mời</button>
+        </div>
+      </div>
+      <div class="overlay" id="overlay"></div>
+      <div class="popup" id="popup">
+        <h2>Vé Mời Tốt Nghiệp</h2>
+        <img src="/tdtu_passenger.png" alt="Vé mời" />
+        
+        <button class="close-btn" onclick="hidePopup()">Đóng</button>
+      </div>
+    </div>
+
+    <div class="content" data-aos="fade-up" data-aos-delay="400">
+      <h2 style="padding-top: 2cm;">Bản đồ di chuyển</h2>
+      <div class="map">
+        <iframe
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.058266777341!2d106.70199697511172!3d10.729575589410208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f69484d2f97%3A0x3b2d9a669545a5d4!2sTon%20Duc%20Thang%20University!5e0!3m2!1svi!2s!4v1732134567890"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="img-magnifier-container content" data-aos="fade-up" data-aos-delay="500">
+      <h2 style="padding-top: 1.5cm;">
+        Gửi xe theo hướng dẫn bên dưới (<a href="https://discovery.tdtu.edu.vn/" target="_blank">Bản đồ 3D TDTU</a>)
+      </h2>
+      <img id="tdtu-map" src="/tdtu_map.png" alt="Bản đồ TDTU" />
+    </div>
+
+    <footer data-aos="fade-up" data-aos-delay="600">
+      <p>Trân trọng thân mời mọi người đến chung vui cùng mình trong ngày lễ ý nghĩa này.</p>
+    </footer>
+
+    <!-- Thêm Lightbox2 JS và AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true
+      });
+
+      function showPopup() {
+        document.getElementById("popup").classList.add("active");
+        document.getElementById("overlay").classList.add("active");
+      }
+
+      function hidePopup() {
+        document.getElementById("popup").classList.remove("active");
+        document.getElementById("overlay").classList.remove("active");
+      }
+    </script>
+  </body>
+</html>
